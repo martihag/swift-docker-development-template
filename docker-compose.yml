@@ -1,0 +1,7 @@
+version: '2'
+services: 
+  app:
+    build: .
+    command: bash -c "swift build && ./.build/debug/app"
+    volumes:
+      - .:/app
