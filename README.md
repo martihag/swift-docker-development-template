@@ -9,15 +9,35 @@ Using this you can easily develop server side Swift even on a Windows computer.
 
 ## Initialize a basic project scaffold:
 ```
-docker-compose run app swift package init --type executable
+$ docker-compose run app swift package init --type executable
 ```
 SPM will generate a project from within docker container targeted the mounted volume.
 These files can now be accessed and edited from the host system.
 
+Your root folder now looks like this.
+```
+.
+├── Dockerfile
+├── Package.swift
+├── README.md
+├── Sources
+│   └── main.swift
+├── Tests
+└── docker-compose.yml
+```
+
 ## Run your project
 ```
-docker-compose up
+$ docker-compose up
+
+Creating swiftdocker_app_1
+Attaching to swiftdocker_app_1
+app_1  | Compile Swift Module 'app' (1 sources)
+app_1  | Linking ./.build/debug/app
+app_1  | Hello, world!
+swiftdocker_app_1 exited with code 0
 ```
+Success!
 
 ## Example
 Say we want to try out [Vapor](http://vapor.codes), the web framework for Swift.
@@ -64,7 +84,10 @@ services:
 ```
 
 Now run
-```docker-compose up```
+
+```
+$ docker-compose up
+```
 
 You should see a bunch of output from the container while it fetches and compiles all dependencies.
 It now boots up the server, and by visiting ```localhost:8080/hello``` you should see activity in your console, and you will be greeted in your web browser.
